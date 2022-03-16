@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
+import CartWidgetComp from './CartWidgetComp';
 
 const NavbarComp = () => {
   return (
@@ -31,6 +32,7 @@ const NavbarComp = () => {
               Contacto
             </Nav.Link>
           </Nav>
+          <CartWidgetComp items={1}/>
           <Button className="mx-2" variant="outline-primary">
             Ingresar
           </Button>
