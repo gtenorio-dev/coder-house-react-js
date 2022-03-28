@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import {
-  Card,
-  Button,
-  Container,
-  InputGroup,
-  Form,
-} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Card, Button, Container, InputGroup, Form } from "react-bootstrap";
 
-const ProductItem = () => {
+const ProductItem = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
 
   const increase = () => {
-    setQuantity(quantity + 1);
+    // if (quantity != STOCK!!) {
+      setQuantity(quantity + 1);
+    // }
   };
   const decrease = () => {
     if (quantity > 1) {
@@ -20,12 +16,12 @@ const ProductItem = () => {
   };
 
   return (
-    <Container className="my-4">
-      <Card style={{ width: "18rem" }}>
+    <Container className="my-5">
+      <Card style={{ width: "18rem" }} className="m-auto">
         {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
         <Card.Body>
-          <Card.Title>Product name</Card.Title>
-          <Card.Text>Product price</Card.Text>
+          {/* <Card.Subtitle>{product.title}</Card.Subtitle> */}
+          <Card.Title className="my-5">${product.price}</Card.Title>
           <div className="d-grid gap-2">
             <InputGroup className="mb-3">
               <Button
