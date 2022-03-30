@@ -1,12 +1,15 @@
 import React from "react";
+import { Row, Container } from "react-bootstrap";
 import Item from "./Item";
 
-export const ItemList = ({products}) => {
+export const ItemList = ({ products }) => {
   return (
-    <div>
-      {products.map((p) => (
-        <Item product={p} />
-      ))}
-    </div>
+    <Container className="m-5">
+      <Row xs={1} md={3} className="g-4">
+        {products.map((p) => (
+          <Item product={p} key={p.id} />
+        ))}
+      </Row>
+    </Container>
   );
 };

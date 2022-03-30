@@ -1,17 +1,22 @@
 import "./App.css";
 import NavbarComp from "./Components/NavbarComp";
-// import ItemListContainer from "./Components/ItemListContainer";
-import ItemDetailContainer from './Components/ItemDetailContainer';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import ItemListContainer from "./Components/ItemListContainer";
+import ItemDetailContainer from "./Components/ItemDetailContainer";
+import ContactContainer from "./Components/ContactContainer";
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <NavbarComp />
-      {/* <ItemListContainer /> */}
 
-      <ItemDetailContainer/>
-
-    </div>
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/contact" element={<ContactContainer />} />
+        <Route path="/detail/:itemId" element={<ItemDetailContainer />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

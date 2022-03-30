@@ -1,16 +1,28 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import Image from "react-bootstrap/Image";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import ProductItem from "./ProductItem";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ItemDetail = ({ product }) => {
-  // console.log(product);
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(-1);
+  };
 
   return (
-      <Container>
+    <div>
+      <Button
+        variant="outline-secondary"
+        className="px-4 mt-4"
+        onClick={handleNavigate}
+      >
+        Back
+      </Button>
+      <div className="m-2">
         <Row>
           <Col>
-            <img // eslint-disable-line jsx-a11y/alt-text
+            <img
               src={product.image}
               className="img-fluid p-5"
               style={{ width: "22rem" }}
@@ -19,15 +31,16 @@ const ItemDetail = ({ product }) => {
           <Col>
             <h4 className="my-4">{product.title}</h4>
             <Container>
-              <ProductItem product = {product}/>
+              <ProductItem product={product} />
             </Container>
           </Col>
         </Row>
-        <Container className="m-5">
-          <h5>Descripcion</h5>
+        <div className="m-5">
+          <h5>Description</h5>
           <p>{product.description}</p>
-        </Container>
-      </Container>
+        </div>
+      </div>
+    </div>
   );
 };
 

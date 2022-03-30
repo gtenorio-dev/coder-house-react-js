@@ -21,7 +21,7 @@ const ProductItem = ({ product }) => {
         {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
         <Card.Body>
           {/* <Card.Subtitle>{product.title}</Card.Subtitle> */}
-          <Card.Title className="my-5">${product.price}</Card.Title>
+          <Card.Title className="my-5">Price: ${product.price}</Card.Title>
           <div className="d-grid gap-2">
             <InputGroup className="mb-3">
               <Button

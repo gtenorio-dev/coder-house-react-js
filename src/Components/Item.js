@@ -1,27 +1,29 @@
-import React, { useState } from "react";
-import { Card, Button, Container, InputGroup, Form } from "react-bootstrap";
-import ProductItem from "./ProductItem";
+import React from "react";
+import { Card, Button, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Item = ({ product }) => {
   return (
-    <div>
-      <Container className="my-4" key={product.id}>
-        <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={product.image} />
-          <Card.Body>
-            <div className="m-4 text-start">
-              <Card.Title>${product.price}</Card.Title>
-              <Card.Subtitle className="my-3 text-muted">
-                {product.name}
-              </Card.Subtitle>
-            </div>
+    <Col>
+      <Card border="light" style={{ width: "20rem" }}>
+        <Card.Img variant="top" className="px-5 pt-4" src={product.image} />
+        <Card.Body>
+          <div className="m-4 text-start">
+            <Card.Title>{product.title}</Card.Title>
+            <Card.Subtitle className="my-3 text-muted">
+              Price: ${product.price}
+            </Card.Subtitle>
+          </div>
+          <Link to={`/detail/${product.id}`}>
+            <div className="text-center">
             <Button variant="outline-primary" className="px-5">
-              Ver
+              View
             </Button>
-          </Card.Body>
-        </Card>
-      </Container>
-    </div>
+            </div>
+          </Link>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 };
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ProductItem from "./ProductItem";
 import { ItemList } from "./ItemList";
-import { Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import { getProducts } from "./../mocks/fakeAPI";
 
 const ItemListContainer = () => {
@@ -17,8 +16,7 @@ const ItemListContainer = () => {
   }, []);
 
   return (
-    <div>
-      {/* <ProductItem />  */}
+    <Container>
       {loading ? (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -27,7 +25,7 @@ const ItemListContainer = () => {
         ""
       )}
       <ItemList products={products} />
-    </div>
+    </Container>
   );
 };
 
