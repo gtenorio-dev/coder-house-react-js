@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Item = ({ product }) => {
   return (
     <Col>
-      <Card border="light" style={{ width: "20rem" }}>
+      <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" className="px-5 pt-4" src={product.image} />
         <Card.Body>
           <div className="m-4 text-start">

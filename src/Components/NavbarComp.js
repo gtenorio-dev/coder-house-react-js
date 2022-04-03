@@ -2,8 +2,16 @@ import React from "react";
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
+import NavbarCategoryContainer from "./NavbarCategoryContainer";
 
 const NavbarComp = () => {
+  const categories = [
+    "electronics",
+    "jewelery",
+    "men's clothing",
+    "women's clothing",
+  ];
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -17,19 +25,24 @@ const NavbarComp = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            {/* <Link to={"/"}> */}
             <Nav.Link as={Link} to="/" className="mx-4">
               Inicio
             </Nav.Link>
-            {/* </Link> */}
-            {/* <NavDropdown
-              title="Productos"
+            <NavDropdown
+              title="Category"
               className="mx-4"
               id="navbarScrollingDropdown"
             >
-              <NavDropdown.Item href="#action2">Producto 1</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Producto 2</NavDropdown.Item>
-            </NavDropdown> */}
+              {categories.map((c) => (
+                // <NavbarCategoryContainer category={c} />
+                <NavDropdown.Item as={Link} to={`/category/${c}`} key={c}>
+                  {c}
+                </NavDropdown.Item>
+              ))}
+
+              {/* <NavDropdown.Item href="#action2">Category 1</NavDropdown.Item>
+              <NavDropdown.Item href="#action3">Category 2</NavDropdown.Item> */}
+            </NavDropdown>
             {/* <Nav.Link href="#action4" className="mx-4">
               Ofertas
             </Nav.Link> */}
