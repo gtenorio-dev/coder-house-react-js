@@ -15,7 +15,7 @@ const ItemDetailContainer = () => {
 
   useEffect(() => {
     setLoading(true);
-    
+
     getProducts
       .then((res) => setProduct(res.find((prod) => prod.id === Number(itemId))))
       .catch((err) => console.log("Error reading product from API"))
@@ -29,7 +29,7 @@ const ItemDetailContainer = () => {
           <span className="visually-hidden">Loading...</span>
         </Spinner>
       ) : (
-        <ItemDetail product={product} />
+        <ItemDetail {...product} />
       )}
     </Container>
   );

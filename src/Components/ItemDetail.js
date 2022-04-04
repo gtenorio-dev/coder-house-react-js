@@ -1,13 +1,35 @@
-import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import ProductItem from "./ProductItem";
+import React, { useState } from "react";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import ItemCounter from "./ItemCounter";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const ItemDetail = ({ product }) => {
-  const navigate = useNavigate();
+const ItemDetail = ({
+  id,
+  title,
+  price,
+  description,
+  category,
+  image,
+  rating,
+}) => {
+  console.log(description);
 
+  const [quantity, setQuantity] = useState(1);
+
+  const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(-1);
+  };
+
+  const addToCart = () => {
+    const itemToAdd = {
+      id,
+      title,
+      price,
+      image,
+      quantity,
+    };
+    console.log(itemToAdd);
   };
 
   return (
@@ -22,23 +44,30 @@ const ItemDetail = ({ product }) => {
       <div className="m-2">
         <Row>
           <Col>
-            <img
-              src={product.image}
-              className="img-fluid p-5"
-              style={{ width: "22rem" }}
-            />
+            <Container style={{ width: "25rem" }}>
+              <img src={image} className="img-fluid p-5 m-auto" />
+            </Container>
           </Col>
           <Col>
-            <h4 className="my-4">{product.title}</h4>
-            <Container>
-              <ProductItem product={product} />
+            <Container style={{ width: "25rem" }}>
+              <Card className="m-auto p-4">
+                <Card.Body>
+                  <Card.Title className="mb-5">{title}</Card.Title>
+                  <Card.Subtitle>${price}</Card.Subtitle>
+                  <ItemCounter
+                    quantity={quantity}
+                    setQuantity={setQuantity}
+                    onAdd={addToCart}
+                  />
+                </Card.Body>
+              </Card>
             </Container>
           </Col>
         </Row>
-        <div className="m-5">
+        <Container className="p-5">
           <h5>Description</h5>
-          <p>{product.description}</p>
-        </div>
+          <span>{description}</span>
+        </Container>
       </div>
     </div>
   );
