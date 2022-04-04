@@ -51,11 +51,11 @@ const NavbarComp = () => {
             </Nav.Link>
           </Nav>
           <CartWidget items={0} />
-          <Button className="mx-2" variant="outline-primary">
-            Ingresar
+          <Button className="mx-2" variant="outline-primary" as={Link} to="/signin">
+            Sign In
           </Button>
-          <Button className="mx-2" variant="primary">
-            Registrarse
+          <Button className="mx-2" variant="primary" as={Link} to="/signup">
+            Sign Up
           </Button>
         </Navbar.Collapse>
       </Container>
