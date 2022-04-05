@@ -14,6 +14,8 @@ const ItemListContainer = () => {
     setLoading(true);
 
     if (categoryName) {
+      setProducts([]);
+      
       // TODO COMO HAGO PARA SEPARAR ESTO EN UNA FUNCION EXTERNA??
       fetch(`https://fakestoreapi.com/products/category/${categoryName}`)
         .then((res) => res.json())
@@ -34,9 +36,14 @@ const ItemListContainer = () => {
   return (
     <Container>
       {loading ? (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+        <div
+          className="d-flex justify-content-center my-auto align-items-end"
+          style={{ height: "45vh" }}
+        >
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
       ) : (
         ""
       )}

@@ -34,20 +34,16 @@ const NavbarComp = () => {
               id="navbarScrollingDropdown"
             >
               {categories.map((c) => (
-                // <NavbarCategoryContainer category={c} />
                 <NavDropdown.Item as={Link} to={`/category/${c}`} key={c}>
                   {c}
                 </NavDropdown.Item>
               ))}
-
-              {/* <NavDropdown.Item href="#action2">Category 1</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Category 2</NavDropdown.Item> */}
             </NavDropdown>
             {/* <Nav.Link href="#action4" className="mx-4">
               Ofertas
             </Nav.Link> */}
             <Nav.Link as={Link} to="/contact" className="mx-4">
-              Contacto
+              Contact
             </Nav.Link>
           </Nav>
           <CartWidget items={0} />
