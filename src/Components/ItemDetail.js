@@ -41,15 +41,15 @@ const ItemDetail = ({
       >
         Back
       </Button>
-      <div className="m-2">
+      <div className="">
         <Row>
           <Col>
-            <Container style={{ width: "25rem" }}>
-              <img src={image} className="img-fluid p-5 m-auto" />
+            <Container style={{ width: "22rem" }}>
+              <img src={image} className="img-fluid m-auto p-4" />
             </Container>
           </Col>
           <Col>
-            <Container style={{ width: "25rem" }}>
+            <Container style={{ width: "22rem" }}>
               <Card className="m-auto p-4">
                 <Card.Body>
                   <Card.Title className="mb-5">{title}</Card.Title>
