@@ -3,15 +3,13 @@ import { Container, Spinner } from "react-bootstrap";
 import ItemDetail from "./ItemDetail";
 import { getProducts } from "../mocks/fakeAPI";
 import { useParams } from "react-router-dom";
+import SpinnerComp from "./SpinnerComp";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const { itemId } = useParams();
-
-  console.log(itemId);
-  console.log(product);
 
   useEffect(() => {
     setLoading(true);
@@ -24,13 +22,7 @@ const ItemDetailContainer = () => {
 
   return (
     <Container>
-      {loading ? (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      ) : (
-        <ItemDetail {...product} />
-      )}
+      {loading ? <SpinnerComp /> : <ItemDetail {...product} />}
     </Container>
   );
 };

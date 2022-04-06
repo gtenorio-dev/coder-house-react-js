@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import ItemCounter from "./ItemCounter";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const ItemDetail = ({
   id,
@@ -12,7 +13,9 @@ const ItemDetail = ({
   image,
   rating,
 }) => {
-  console.log(description);
+  const { cart, addItemToCart, isInCart } = useContext(CartContext);
+  // console.log(isInCart(id));
+  // console.log(cart);
 
   const [quantity, setQuantity] = useState(1);
 
@@ -29,7 +32,8 @@ const ItemDetail = ({
       image,
       quantity,
     };
-    console.log(itemToAdd);
+    // console.log(itemToAdd);
+    addItemToCart(itemToAdd);
   };
 
   return (
@@ -54,11 +58,26 @@ const ItemDetail = ({
                 <Card.Body>
                   <Card.Title className="mb-5">{title}</Card.Title>
                   <Card.Subtitle>${price}</Card.Subtitle>
-                  <ItemCounter
-                    quantity={quantity}
-                    setQuantity={setQuantity}
-                    onAdd={addToCart}
-                  />
+
+                  {!isInCart(id)? (
+                    <ItemCounter
+                      quantity={quantity}
+                      setQuantity={setQuantity}
+                      onAdd={addToCart}
+                    />
+                  ) : (
+                    <div className="text-center mt-5 mb-2">
+
+                        {/* //TODO editar cantidad  --> Minuto 50 */}
+                        <Button variant="outline-primary" className="mx-2">Edit</Button>
+
+                        <Link to="/cart">
+                          {/* <div className="text-center mt-5 mb-2"> */}
+                            <Button variant="primary">Finish order</Button>
+                          {/* </div> */}
+                        </Link>
+                    </div>
+                  )}
                 </Card.Body>
               </Card>
             </Container>

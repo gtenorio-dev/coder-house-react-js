@@ -3,6 +3,7 @@ import { ItemList } from "./ItemList";
 import { Container, Spinner } from "react-bootstrap";
 import { getProducts, getProductsByCategory } from "./../mocks/fakeAPI";
 import { useParams } from "react-router-dom";
+import SpinnerComp from "./SpinnerComp";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -15,12 +16,12 @@ const ItemListContainer = () => {
 
     if (categoryName) {
       setProducts([]);
-      
+
       // TODO COMO HAGO PARA SEPARAR ESTO EN UNA FUNCION EXTERNA??
       fetch(`https://fakestoreapi.com/products/category/${categoryName}`)
         .then((res) => res.json())
         .then((resData) => {
-          console.log(resData);
+          // console.log(resData);
           setProducts(resData);
         })
         .catch((err) => console.warn(err))
@@ -35,18 +36,7 @@ const ItemListContainer = () => {
 
   return (
     <Container>
-      {loading ? (
-        <div
-          className="d-flex justify-content-center my-auto align-items-end"
-          style={{ height: "45vh" }}
-        >
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </div>
-      ) : (
-        ""
-      )}
+      {loading ? <SpinnerComp /> : ""}
       <ItemList products={products} />
     </Container>
   );

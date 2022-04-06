@@ -272,7 +272,7 @@ const productList = [
 
 export const getProducts = new Promise((res, err) => {
   setTimeout(() => {
-    console.log("Request to API (2 seg)");
+    // console.log("Request to API (2 seg)");
     res(productList);
   }, 2000);
 });
