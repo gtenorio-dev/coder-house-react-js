@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import ItemDetail from "./ItemDetail";
-import { getProducts } from "../mocks/fakeAPI";
+import { getProducts } from "../../mocks/fakeAPI";
 import { useParams } from "react-router-dom";
-import SpinnerComp from "./SpinnerComp";
+import SpinnerComp from "../Spinner/SpinnerComp";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);

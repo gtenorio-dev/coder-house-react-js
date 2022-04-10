@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CartWidget from "./CartWidget";
+import CartWidget from "../Cart/CartWidget";
 import NavbarCategoryContainer from "./NavbarCategoryContainer";
 
 const NavbarComp = () => {
@@ -46,7 +46,7 @@ const NavbarComp = () => {
               Contact
             </Nav.Link>
           </Nav>
-          <CartWidget items={0} />
+          <CartWidget/>
           <Button className="mx-2" variant="outline-primary" as={Link} to="/signin">
             Sign In
           </Button>
