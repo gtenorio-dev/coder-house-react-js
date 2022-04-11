@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Button, Container, InputGroup, Form, Card } from "react-bootstrap";
+import React from "react";
+import { Button, InputGroup, Form, Card } from "react-bootstrap";
 
 const ProductItem = ({ stock, onAdd, quantity, setQuantity }) => {
     const increase = () => {

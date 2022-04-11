@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ItemList } from "./ItemList";
-import { Container, Spinner } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { getProducts } from "../../mocks/fakeAPI";
 import { useParams } from "react-router-dom";
 import SpinnerComp from "../Spinner/SpinnerComp";
@@ -17,7 +17,11 @@ const ItemListContainer = () => {
         if (categoryName) {
             setProducts([]);
             getProducts
-                .then((res) => setProducts(res.filter((prod) => prod.category === categoryName)))
+                .then((res) =>
+                    setProducts(
+                        res.filter((prod) => prod.category === categoryName)
+                    )
+                )
                 .catch((err) => console.warn(err))
                 .finally(() => setLoading(false));
         } else {
@@ -31,7 +35,15 @@ const ItemListContainer = () => {
 
     return (
         <Container>
-            {loading ? <SpinnerComp /> : ""}
+            {loading && (
+                <div
+                    className="d-flex justify-content-center my-auto align-items-end"
+                    style={{ height: "45vh" }}
+                >
+                    <SpinnerComp />
+                </div>
+            )}
+
             <ItemList products={products} />
         </Container>
     );

@@ -4,6 +4,8 @@ import { CartContext } from "../../context/CartContext";
 import CartItem from "./CartItem";
 import { useNavigate } from "react-router-dom";
 
+import "./Cart.css";
+
 const Cart = () => {
     const { cart, cartTotal, clearCart, removeCartItem } =
         useContext(CartContext);
@@ -54,7 +56,6 @@ const Cart = () => {
             <hr />
             <Container className="my-4 d-flex justify-content-between align-items-center">
                 <Button
-                    className=""
                     variant="outline-danger"
                     onClick={clearCart}
                 >

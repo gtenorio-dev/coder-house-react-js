@@ -11,14 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
-.cartStyle {
-  margin: 0 2rem 0 2rem;
-  display: flex;
-  align-items: center;
-}
-
-.cartItemCounter {
-  /* background-color: #aeaeaeae; */
-}
