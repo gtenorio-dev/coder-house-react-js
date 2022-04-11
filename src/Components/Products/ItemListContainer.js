@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ItemList } from "./ItemList";
 import { Container } from "react-bootstrap";
-import { getProducts } from "../../mocks/fakeAPI";
 import { useParams } from "react-router-dom";
 import SpinnerComp from "../Spinner/SpinnerComp";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
@@ -14,23 +15,20 @@ const ItemListContainer = () => {
     useEffect(() => {
         setLoading(true);
 
-        if (categoryName) {
-            setProducts([]);
-            getProducts
-                .then((res) =>
-                    setProducts(
-                        res.filter((prod) => prod.category === categoryName)
-                    )
-                )
-                .catch((err) => console.warn(err))
-                .finally(() => setLoading(false));
-        } else {
-            getProducts
-                .then((res) => setProducts(res))
-                .catch((err) => console.warn(err))
-                .finally(() => setLoading(false));
-        }
-        // console.log(products);
+        const productsRef = collection(db, "products");
+        const q = categoryName
+            ? query(productsRef, where("category", "==", categoryName))
+            : productsRef;
+
+        getDocs(q)
+            .then((res) => {
+                const items = res.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setProducts(items);
+            })
+            .finally(() => setLoading(false));
     }, [categoryName]);
 
     return (

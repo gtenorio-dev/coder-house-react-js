@@ -8,8 +8,6 @@ const NavbarCategoryListContainer = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    console.log(loading);
-
     useEffect(() => {
         setLoading(true);
         getCategories
