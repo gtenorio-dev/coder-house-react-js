@@ -37,7 +37,7 @@ const CartItem = ({ id, title, quantity, price, image }) => {
                 <Col className="m-auto text-center">
                     <Button
                         className="my-4"
-                        variant="danger"
+                        variant="outline-danger"
                         size="lg"
                         onClick={() => removeCartItem(id)}
                     >

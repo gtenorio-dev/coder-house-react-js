@@ -8,6 +8,7 @@ import SignUpContainer from "./Components/loggin/signup/SignUpContainer";
 import SignInContainer from "./Components/loggin/signin/SignInContainer";
 import Cart from "./Components/Cart/Cart";
 import { CartProvider } from "./context/CartContext";
+import Checkout from "./Components/Checkout/Checkout";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             element={<ItemListContainer />}
           />
           <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
 
         {/* Footer */}

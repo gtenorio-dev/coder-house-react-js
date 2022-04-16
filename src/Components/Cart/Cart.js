@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import { Button, Container, Card } from "react-bootstrap";
 import { CartContext } from "../../context/CartContext";
 import CartItem from "./CartItem";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Cart.css";
+import Checkout from "./../Checkout/Checkout";
 
 const Cart = () => {
-    const { cart, cartTotal, clearCart, removeCartItem } =
+    const { cart, cartTotal, clearCart } =
         useContext(CartContext);
 
     console.log(cart);
@@ -37,16 +38,8 @@ const Cart = () => {
         );
     }
 
-    if (cart.length == 0) {
-        return (
-            <Container>
-                <span>You don't have items in your cart</span>
-            </Container>
-        );
-    }
-
     return (
-        <Container className="m-5">
+        <Container className="m-5 mx-auto">
             <span style={{ fontSize: "2rem" }}>Products</span>
             <hr />
             {cart.map((prod) => (
@@ -55,15 +48,19 @@ const Cart = () => {
 
             <hr />
             <Container className="my-4 d-flex justify-content-between align-items-center">
-                <Button
-                    variant="outline-danger"
-                    onClick={clearCart}
-                >
+                <Button variant="outline-danger" onClick={clearCart}>
                     Clear cart
                 </Button>
-                <span className="text-end" style={{ fontSize: "1.5rem" }}>
-                    Total: ${cartTotal()}
-                </span>
+                <div className="d-flex align-items-center">
+                    <span className="text-end mx-4" style={{ fontSize: "1.5rem" }}>
+                        Total: ${cartTotal()}
+                    </span>
+                    <Link to="/checkout">
+                        <Button variant="success">
+                            Checkout
+                        </Button>
+                    </Link>
+                </div>
             </Container>
         </Container>
     );
