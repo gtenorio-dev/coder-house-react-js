@@ -1,10 +1,12 @@
 import {
     addDoc,
     collection,
-    doc,
-    getDoc,
+    documentId,
+    getDocs,
+    query,
     Timestamp,
-    updateDoc,
+    where,
+    writeBatch,
 } from "firebase/firestore";
 import React, { useContext, useState } from "react";
 import { Card, Container, Form, Button } from "react-bootstrap";
@@ -32,7 +34,7 @@ const Checkout = () => {
         navigate("/");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const order = {
@@ -42,27 +44,36 @@ const Checkout = () => {
             date: Timestamp.fromDate(new Date()),
         };
 
-        cart.forEach((item) => {
-            const docRef = doc(db, "products", item.id);
-            getDoc(docRef)
-                .then((doc) => {
-                    console.log(doc.data().stock);
-                    console.log(item.stock);
+        const batch = writeBatch(db);
+        const productsRef = collection(db, "products");
+        const cartItemsIds = cart.map((item) => item.id);
+        const q = query(productsRef, where(documentId(), "in", cartItemsIds));
+        const products = await getDocs(q);
 
-                    if (doc.data().stock >= item.quantity) {
-                        updateDoc(docRef, {
-                            stock: doc.data().stock - item.quantity,
-                        });
-                        addOrderToDB(order);
-                    } else {
-                        alert(`${item.title} is out of stock`);
-                        clearCart();
-                        navigateToHome();
-                        // TODO IMPLEMENTAR "BATCH UPDATE"
-                    }
-                })
-                .catch(() => alert("Error creating order"));
+        const outOfStock = [];
+
+        products.docs.forEach((doc) => {
+            const itemInCart = cart.find((item) => item.id === doc.id);
+
+            if (doc.data().stock >= itemInCart.stock) {
+                batch.update(doc.ref, {
+                    stock: doc.data().stock - itemInCart.stock,
+                });
+            } else {
+                outOfStock.push(itemInCart);
+            }
         });
+
+        if (outOfStock.length === 0) {
+            await batch.commit();
+            addOrderToDB(order);
+        } else {
+            // TODO CAMBIAR EL  MENSAJE DE ERROR.
+
+            alert(`${outOfStock} is out of stock`);
+            clearCart();
+            navigateToHome();
+        }
     };
 
     const addOrderToDB = (order) => {
