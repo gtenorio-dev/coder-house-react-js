@@ -6,7 +6,11 @@ const Item = ({ id, title, image, stock, price }) => {
     return (
         <Col>
             <Card style={{ width: "18rem" }} className="m-auto">
-                <Card.Img variant="top" className="px-5 pt-4" src={image} />
+                <Card.Img variant="top" className="px-5 pt-4" src={image} style={{
+                                // width: "100%",
+                                objectFit: "contain",
+                                height: "18rem",
+                            }}/>
                 <Card.Body>
                     <div className="m-4 text-start">
                         <Card.Title>{title}</Card.Title>

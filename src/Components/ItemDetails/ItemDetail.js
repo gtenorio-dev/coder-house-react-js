@@ -1,20 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import ItemCounter from "./ItemCounter";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
-const ItemDetail = ({
-    id,
-    title,
-    price,
-    description,
-    category,
-    image,
-    stock,
-}) => {
-    const { cart, addItemToCart, isInCart } = useContext(CartContext);
-
+const ItemDetail = ({ id, title, price, description, image, stock }) => {
+    const { cart, addItemToCart, isInCart, removeCartItem } =
+        useContext(CartContext);
     const [quantity, setQuantity] = useState(1);
 
     const navigate = useNavigate();
@@ -30,8 +22,16 @@ const ItemDetail = ({
             image,
             quantity,
         };
-        // console.log(itemToAdd);
+
         addItemToCart(itemToAdd);
+    };
+
+    const removeItemFromCart = () => {
+        removeCartItem(id);
+    };
+
+    const printCart = () => {
+        console.log(cart);
     };
 
     return (
@@ -42,6 +42,13 @@ const ItemDetail = ({
                 onClick={handleNavigate}
             >
                 Back
+            </Button>
+            <Button
+                variant="outline-primary"
+                className="mx-2"
+                onClick={printCart}
+            >
+                Print
             </Button>
             <div>
                 <Row>
@@ -63,7 +70,25 @@ const ItemDetail = ({
                                         ${Number(price).toFixed(2)}
                                     </Card.Subtitle>
 
-                                    {!isInCart(id) ? (
+                                    {isInCart(id) ? (
+                                        <Container className="mb-2 mt-3">
+                                            <div className="d-grid gap-2 mt-5">
+                                                <Button
+                                                    as={Link}
+                                                    to="/cart"
+                                                    variant="primary"
+                                                >
+                                                    Go to cart
+                                                </Button>
+                                                <Button
+                                                    variant="outline-danger"
+                                                    onClick={removeItemFromCart}
+                                                >
+                                                    Remove from cart
+                                                </Button>
+                                            </div>
+                                        </Container>
+                                    ) : (
                                         <Container className="mb-2 mt-3">
                                             <div className="d-grid gap-2">
                                                 {stock <= 5 && stock > 0 && (
@@ -83,25 +108,15 @@ const ItemDetail = ({
                                                     stock={stock}
                                                     quantity={quantity}
                                                     setQuantity={setQuantity}
-                                                    onAdd={addToCart}
                                                 />
+                                                <Button
+                                                    variant="outline-primary"
+                                                    onClick={addToCart}
+                                                >
+                                                    Add to cart
+                                                </Button>
                                             </div>
                                         </Container>
-                                    ) : (
-                                        <div className="text-center mt-5 mb-2">
-                                            {/* //TODO editar cantidad  --> Minuto 50 */}
-                                            <Button
-                                                variant="outline-primary"
-                                                className="mx-2"
-                                            >
-                                                Edit
-                                            </Button>
-                                            <Link to="/cart">
-                                                <Button variant="primary">
-                                                    Go to cart
-                                                </Button>
-                                            </Link>
-                                        </div>
                                     )}
                                 </Card.Body>
                             </Card>

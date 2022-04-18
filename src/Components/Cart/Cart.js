@@ -3,9 +3,7 @@ import { Button, Container, Card } from "react-bootstrap";
 import { CartContext } from "../../context/CartContext";
 import CartItem from "./CartItem";
 import { Link, useNavigate } from "react-router-dom";
-
 import "./Cart.css";
-import Checkout from "./../Checkout/Checkout";
 
 const Cart = () => {
     const { cart, cartTotal, clearCart } =

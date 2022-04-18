@@ -1,8 +1,8 @@
 import NavbarComp from "./Components/Navbar/NavbarComp";
 import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import ItemListContainer from "./Components/Products/ItemListContainer";
-import ItemDetailContainer from "./Components/ProductDetails/ItemDetailContainer";
+import ItemListContainer from "./Components/Items/ItemListContainer";
+import ItemDetailContainer from "./Components/ItemDetails/ItemDetailContainer";
 import ContactContainer from "./Components/Contact/ContactContainer";
 import SignUpContainer from "./Components/loggin/signup/SignUpContainer";
 import SignInContainer from "./Components/loggin/signin/SignInContainer";

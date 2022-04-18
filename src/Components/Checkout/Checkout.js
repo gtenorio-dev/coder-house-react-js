@@ -54,10 +54,9 @@ const Checkout = () => {
 
         products.docs.forEach((doc) => {
             const itemInCart = cart.find((item) => item.id === doc.id);
-
-            if (doc.data().stock >= itemInCart.stock) {
+            if (doc.data().stock >= itemInCart.quantity) {
                 batch.update(doc.ref, {
-                    stock: doc.data().stock - itemInCart.stock,
+                    stock: doc.data().stock - itemInCart.quantity,
                 });
             } else {
                 outOfStock.push(itemInCart);
@@ -69,7 +68,6 @@ const Checkout = () => {
             addOrderToDB(order);
         } else {
             // TODO CAMBIAR EL  MENSAJE DE ERROR.
-
             alert(`${outOfStock} is out of stock`);
             clearCart();
             navigateToHome();
@@ -79,7 +77,7 @@ const Checkout = () => {
     const addOrderToDB = (order) => {
         const orderRef = collection(db, "orders");
         addDoc(orderRef, order).then((doc) => {
-            console.log(doc.id);
+            // console.log(doc.id);
             setOrderId(doc.id);
             clearCart();
         });

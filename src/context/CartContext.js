@@ -18,10 +18,12 @@ export const CartProvider = ({ children }) => {
     };
 
     const cartTotal = () => {
-        return Number(cart.reduce(
-            (total, prod) => (total += prod.price * prod.quantity),
-            0
-        )).toFixed(2);
+        return Number(
+            cart.reduce(
+                (total, prod) => (total += prod.price * prod.quantity),
+                0
+            )
+        ).toFixed(2);
     };
 
     const clearCart = () => {
@@ -30,6 +32,20 @@ export const CartProvider = ({ children }) => {
 
     const removeCartItem = (id) => {
         setCart(cart.filter((prod) => prod.id !== id));
+    };
+
+    const updateItem = (item) => {
+        // console.log("Cart Context");
+        // console.log(item);
+        cart.forEach((cartItem) => {
+            if (cartItem.id === item.id) {
+                cartItem.quantity = item.quantity;
+            }
+        });
+        setCart([...cart]);
+
+        // console.log("cart");
+        // console.log(cart);
     };
 
     return (
@@ -42,6 +58,7 @@ export const CartProvider = ({ children }) => {
                 cartTotal,
                 clearCart,
                 removeCartItem,
+                updateItem,
             }}
         >
             {children}

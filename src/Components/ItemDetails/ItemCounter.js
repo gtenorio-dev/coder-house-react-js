@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, InputGroup, Form, Card } from "react-bootstrap";
 
-const ProductItem = ({ stock, onAdd, quantity, setQuantity }) => {
+const ItemCounter = ({ stock, quantity, setQuantity }) => {
     const increase = () => {
         if (quantity < stock) {
             setQuantity(quantity + 1);
@@ -18,7 +18,7 @@ const ProductItem = ({ stock, onAdd, quantity, setQuantity }) => {
     }
 
     return (
-        <>
+        <div className="d-flex flex-column mx-auto" style={{ width: "10rem" }}>
             <Card.Text>Stock: {stock}</Card.Text>
             <InputGroup className="mb-3">
                 <Button
@@ -41,11 +41,8 @@ const ProductItem = ({ stock, onAdd, quantity, setQuantity }) => {
                     +
                 </Button>
             </InputGroup>
-            <Button variant="outline-primary" onClick={onAdd}>
-                Add to cart
-            </Button>
-        </>
+        </div>
     );
 };
 
-export default ProductItem;
+export default ItemCounter;
