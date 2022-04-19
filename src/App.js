@@ -9,6 +9,7 @@ import SignInContainer from "./Components/loggin/signin/SignInContainer";
 import Cart from "./Components/Cart/Cart";
 import { CartProvider } from "./context/CartContext";
 import Checkout from "./Components/Checkout/Checkout";
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
 
-        {/* Footer */}
+        <Footer/>
       </BrowserRouter>
     </CartProvider>
   );
