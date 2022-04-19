@@ -43,13 +43,6 @@ const ItemDetail = ({ id, title, price, description, image, stock }) => {
             >
                 Back
             </Button>
-            <Button
-                variant="outline-primary"
-                className="mx-2"
-                onClick={printCart}
-            >
-                Print
-            </Button>
             <div>
                 <Row>
                     <Col>

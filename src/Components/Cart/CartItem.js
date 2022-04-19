@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "../../context/CartContext";
@@ -34,16 +34,16 @@ const CartItem = ({ id, title, quantity, price, image }) => {
         const item = {
             id,
             title,
-            "quantity" : itemQuantity,
+            quantity: itemQuantity,
             price,
             image,
         };
         updateItem(item);
-    }
+    };
 
     useEffect(() => {
         updateCartItem();
-    },[itemQuantity]);
+    }, [itemQuantity]);
 
     useEffect(async () => {
         await getItemStock().finally(() => setLoading(false));
@@ -51,7 +51,10 @@ const CartItem = ({ id, title, quantity, price, image }) => {
 
     if (loading) {
         return (
-            <Card className="my-4 mx-auto px-2 py-4">
+            <Card
+                className="my-4 mx-auto px-2 py-4"
+                style={{ height: "15rem" }}
+            >
                 <div className="m-auto">
                     <SpinnerComp />
                 </div>
