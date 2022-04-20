@@ -3,7 +3,7 @@ import "./Footer.css";
 
 const Footer = () => {
     return (
-        <footer className="d-flex flex-column justify-content-center">
+        <footer className="d-flex flex-column justify-content-center fixed-bottom">
             <div className="text-center">
                 <span >Gabil Tenorio &copy; 2022</span>
             </div>

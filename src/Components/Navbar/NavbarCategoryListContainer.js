@@ -3,6 +3,8 @@ import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getCategories } from "../../mocks/fakeAPI";
 import SpinnerComp from "../Spinner/SpinnerComp";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 const NavbarCategoryListContainer = () => {
     const [categories, setCategories] = useState([]);
@@ -10,9 +12,12 @@ const NavbarCategoryListContainer = () => {
 
     useEffect(() => {
         setLoading(true);
-        getCategories
-            .then((res) => setCategories(res))
-            .catch((err) => console.warn(err))
+        const categories = collection(db, "categories");
+        getDocs(categories)
+            .then((res) => {
+                const categoryList = res.docs[0].data().categories;
+                setCategories(categoryList);
+            })
             .finally(() => setLoading(false));
     }, []);
 
