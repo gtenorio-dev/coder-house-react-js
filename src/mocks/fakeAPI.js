@@ -219,10 +219,10 @@ export const getProducts = new Promise((res, err) => {
 });
 
 export const getCategories = new Promise((res, err) => {
-  setTimeout(() => {
-    // console.log("Request to API (2 seg)");
-    res(categories);
-  }, 2000);
+    setTimeout(() => {
+        // console.log("Request to API (2 seg)");
+        res(categories);
+    }, 2000);
 });
 
 // export const getProductsByCategory = (category) => {
@@ -234,3 +234,18 @@ export const getCategories = new Promise((res, err) => {
 //         })
 //         .catch((error) => console.warn(error));
 // };
+
+// Upload products to FireStore
+
+const products = [
+    {
+        id: 1,
+        title: "title",
+        price: 10.99,
+        description:
+            "description",
+        category: "category",
+        image: "urlImage",
+        stock: 10,
+    },
+];

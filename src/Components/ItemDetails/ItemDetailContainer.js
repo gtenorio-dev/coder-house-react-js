@@ -28,7 +28,7 @@ const ItemDetailContainer = () => {
             {loading ? (
                 <div
                     className="d-flex justify-content-center my-auto align-items-end"
-                    style={{ height: "45vh" }}
+                    style={{ height: "40vh" }}
                 >
                     <SpinnerComp />
                 </div>

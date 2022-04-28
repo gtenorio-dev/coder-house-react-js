@@ -13,6 +13,7 @@ const ItemListContainer = () => {
     const { categoryName } = useParams();
 
     useEffect(() => {
+        setProducts([]);
         setLoading(true);
 
         const productsRef = collection(db, "products");
@@ -36,7 +37,7 @@ const ItemListContainer = () => {
             {loading && (
                 <div
                     className="d-flex justify-content-center my-auto align-items-end"
-                    style={{ height: "45vh" }}
+                    style={{ height: "40vh" }}
                 >
                     <SpinnerComp />
                 </div>
