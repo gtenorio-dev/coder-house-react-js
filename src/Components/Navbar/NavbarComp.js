@@ -27,10 +27,7 @@ const NavbarComp = () => {
                             Contact
                         </Nav.Link>
                     </Nav>
-                    <div className="text-end">
-
                     <CartWidget />  
-                    </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

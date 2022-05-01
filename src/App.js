@@ -4,8 +4,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ItemListContainer from "./Components/Items/ItemListContainer";
 import ItemDetailContainer from "./Components/ItemDetails/ItemDetailContainer";
 import ContactContainer from "./Components/Contact/ContactContainer";
-import SignUpContainer from "./Components/loggin/signup/SignUpContainer";
-import SignInContainer from "./Components/loggin/signin/SignInContainer";
 import Cart from "./Components/Cart/Cart";
 import { CartProvider } from "./context/CartContext";
 import Checkout from "./Components/Checkout/Checkout";
@@ -21,8 +19,6 @@ function App() {
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/contact" element={<ContactContainer />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/signin" element={<SignInContainer />} />
-          <Route path="/signup" element={<SignUpContainer />} />
           <Route path="/detail/:itemId" element={<ItemDetailContainer />} />
           <Route
             path="/category/:categoryName"

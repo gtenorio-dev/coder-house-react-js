@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { getCategories } from "../../mocks/fakeAPI";
 import SpinnerComp from "../Spinner/SpinnerComp";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
