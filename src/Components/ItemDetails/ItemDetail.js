@@ -87,16 +87,13 @@ const ItemDetail = ({ id, title, price, description, image, stock }) => {
                                         <Container className="mb-2 mt-3">
                                             <div className="d-grid gap-2">
                                                 {stock <= 5 && stock > 0 && (
-                                                    <span
-                                                        style={{
-                                                            color: "blue",
-                                                            fontWeight: "bold",
-                                                        }}
-                                                    >
-                                                        {stock != 1
-                                                            ? "Last items in stock!"
-                                                            : "Last item!"}
-                                                    </span>
+                                                    <div className="my-2 fs-5 text-primary">
+                                                        <span>
+                                                            {stock != 1
+                                                                ? "Last items in stock!"
+                                                                : "Last item!"}
+                                                        </span>
+                                                    </div>
                                                 )}
 
                                                 <ItemCounter
@@ -115,9 +112,7 @@ const ItemDetail = ({ id, title, price, description, image, stock }) => {
                                     )}
                                     {stock === 0 && (
                                         <div className="my-4 text-center fs-5 text-danger">
-                                        <span>
-                                            Out of stock!
-                                        </span>
+                                            <span>Out of stock!</span>
                                         </div>
                                     )}
                                 </Card.Body>

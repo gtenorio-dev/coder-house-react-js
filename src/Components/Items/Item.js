@@ -19,11 +19,13 @@ const Item = ({ id, title, image, stock, price }) => {
                     <div className="m-4 text-start">
                         <Card.Title>{title}</Card.Title>
                         {stock <= 5 && stock > 0 && (
-                            <span style={{ color: "blue" }}>
-                                {stock != 1
-                                    ? "Last items in stock!"
-                                    : "Last item!"}
-                            </span>
+                            <div className="my-2 fs-5 text-primary">
+                                <span>
+                                    {stock != 1
+                                        ? "Last items in stock!"
+                                        : "Last item!"}
+                                </span>
+                            </div>
                         )}
                         {stock == 0 && (
                             <div className="my-2 fs-5 text-danger">
