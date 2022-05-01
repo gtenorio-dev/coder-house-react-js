@@ -26,7 +26,9 @@ const Item = ({ id, title, image, stock, price }) => {
                             </span>
                         )}
                         {stock == 0 && (
-                            <span style={{ color: "red" }}>Out of stock!</span>
+                            <div className="my-2 fs-5 text-danger">
+                                <span>Out of stock!</span>
+                            </div>
                         )}
                         <Card.Subtitle className="text-muted">
                             Price: ${Number(price).toFixed(2)}
@@ -38,7 +40,7 @@ const Item = ({ id, title, image, stock, price }) => {
                                 variant={
                                     stock != 0
                                         ? "outline-primary"
-                                        : "outline-secondary"
+                                        : "outline-danger"
                                 }
                                 className="px-5"
                             >

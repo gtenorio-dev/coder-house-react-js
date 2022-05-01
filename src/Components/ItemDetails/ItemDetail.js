@@ -63,7 +63,7 @@ const ItemDetail = ({ id, title, price, description, image, stock }) => {
                                         ${Number(price).toFixed(2)}
                                     </Card.Subtitle>
 
-                                    {isInCart(id) ? (
+                                    {isInCart(id) && (
                                         <Container className="mb-2 mt-3">
                                             <div className="d-grid gap-2 mt-5">
                                                 <Button
@@ -81,7 +81,9 @@ const ItemDetail = ({ id, title, price, description, image, stock }) => {
                                                 </Button>
                                             </div>
                                         </Container>
-                                    ) : (
+                                    )}
+
+                                    {!isInCart(id) && stock != 0 && (
                                         <Container className="mb-2 mt-3">
                                             <div className="d-grid gap-2">
                                                 {stock <= 5 && stock > 0 && (
@@ -110,6 +112,13 @@ const ItemDetail = ({ id, title, price, description, image, stock }) => {
                                                 </Button>
                                             </div>
                                         </Container>
+                                    )}
+                                    {stock === 0 && (
+                                        <div className="my-4 text-center fs-5 text-danger">
+                                        <span>
+                                            Out of stock!
+                                        </span>
+                                        </div>
                                     )}
                                 </Card.Body>
                             </Card>
