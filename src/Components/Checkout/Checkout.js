@@ -8,13 +8,15 @@ import {
     where,
     writeBatch,
 } from "firebase/firestore";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Container, Form, Button } from "react-bootstrap";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import SpinnerComp from "../Spinner/SpinnerComp";
 import { CartContext } from "./../../context/CartContext";
 import { db } from "./../../firebase/config";
 
 const Checkout = () => {
+    const [loading, setLoading] = useState(false);
     const { cart, cartTotal, clearCart } = useContext(CartContext);
     const [orderId, setOrderId] = useState(null);
     const [values, setValues] = useState({
@@ -36,6 +38,8 @@ const Checkout = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
 
         const order = {
             items: cart,
@@ -79,16 +83,29 @@ const Checkout = () => {
         addDoc(orderRef, order).then((doc) => {
             // console.log(doc.id);
             setOrderId(doc.id);
+            setLoading(false);
             clearCart();
         });
     };
 
     if (orderId) {
         return (
-            <Container className="my-5 py-4 text-center">
-                <span className="fs-2">
-                    Your Order was created successfully!
-                </span>
+            <Container
+                className="my-5 py-4 text-center"
+                style={{ maxWidth: "50rem" }}
+            >
+                <div className="my-5 p-1">
+                    <span className="fs-2">
+                        Your order was created successfully!
+                    </span>
+                </div>
+
+                <div className="p-1">
+                    <span className="fs-4">
+                        You have 48 hours to complete the payment. Follow the
+                        instructions that we send to your mail {values.email}
+                    </span>
+                </div>
                 <div className="d-flex justify-content-center align-items-center my-4">
                     <span>Order code </span>
                     <Card className="p-3 m-4">
@@ -99,7 +116,11 @@ const Checkout = () => {
                 </div>
                 <div className="my-5">
                     <Link to="/">
-                        <Button variant="success" className="px-4 mt-4">
+                        <Button
+                            variant="primary"
+                            size="lg"
+                            className="px-4 mt-4"
+                        >
                             Go to shop
                         </Button>
                     </Link>
@@ -112,12 +133,28 @@ const Checkout = () => {
         return <Navigate to="/" />;
     }
 
+    if (loading) {
+        return (
+            <Container>
+                <div
+                    className="d-flex flex-column justify-content-center align-items-center my-auto align-items-end"
+                    style={{ height: "40vh" }}
+                >
+                    <div className="fs-4 my-5 text-center">
+                        <span>We are creating your order...</span>
+                    </div>
+                    <SpinnerComp />
+                </div>
+            </Container>
+        );
+    }
+
     return (
         <Container>
             <Container className="my-5 text-center">
                 <span style={{ fontSize: "2rem" }}>Checkout</span>
             </Container>
-            <Card>
+            <Card style={{ maxWidth: "50rem" }} className="mx-auto">
                 <Form className="m-4" onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
@@ -133,10 +170,10 @@ const Checkout = () => {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Name and Surname</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="Enter your name"
+                            placeholder="Enter your name and surname"
                             name="name"
                             value={values.name}
                             onChange={handleInputChange}

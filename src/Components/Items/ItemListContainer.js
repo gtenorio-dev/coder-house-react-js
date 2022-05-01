@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import SpinnerComp from "../Spinner/SpinnerComp";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import "./ItemListContainer.css";
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
@@ -33,7 +34,7 @@ const ItemListContainer = () => {
     }, [categoryName]);
 
     return (
-        <Container>
+        <Container className="listContainerStyle">
             {loading && (
                 <div
                     className="d-flex justify-content-center my-auto align-items-end"

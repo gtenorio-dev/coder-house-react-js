@@ -63,7 +63,7 @@ const CartItem = ({ id, title, quantity, price, image }) => {
     }
 
     return (
-        <Card className="my-4 mx-auto px-2 py-4">
+        <Card className="my-5 mx-auto px-2 py-4">
             <Row xs={1} md={2} lg={3}>
                 <Col className="m-auto p-2">
                     <Link to={`/detail/${id}`}>

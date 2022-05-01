@@ -27,23 +27,10 @@ const NavbarComp = () => {
                             Contact
                         </Nav.Link>
                     </Nav>
-                    <CartWidget />
-                    <Button
-                        className="mx-2"
-                        variant="outline-primary"
-                        as={Link}
-                        to="/signin"
-                    >
-                        Sign In
-                    </Button>
-                    <Button
-                        className="mx-2"
-                        variant="primary"
-                        as={Link}
-                        to="/signup"
-                    >
-                        Sign Up
-                    </Button>
+                    <div className="text-end">
+
+                    <CartWidget />  
+                    </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

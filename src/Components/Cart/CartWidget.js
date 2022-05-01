@@ -11,7 +11,7 @@ const CartWidget = () => {
     return (
         <Link to="/cart" style={{ textDecoration: "none" }}>
             <span className="cartStyle">
-                <FontAwesomeIcon icon={faCartShopping} className="myStyle"/>
+                <FontAwesomeIcon size="lg" icon={faCartShopping}/>
                 <span className="cartItemCounter mb-3">
                     {cartQuantity() || ""}
                 </span>

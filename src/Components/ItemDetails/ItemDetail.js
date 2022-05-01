@@ -44,10 +44,10 @@ const ItemDetail = ({ id, title, price, description, image, stock }) => {
                 Back
             </Button>
             <div>
-                <Row>
+                <Row xs={1} md={2} className="align-items-center">
                     <Col>
-                        <Container style={{ width: "22rem" }}>
-                            <img src={image} className="img-fluid m-auto p-4" />
+                        <Container className="d-flex justify-content-center m-auto">
+                            <img src={image} className="img-fluid m-auto" />
                         </Container>
                     </Col>
                     <Col>
@@ -116,7 +116,7 @@ const ItemDetail = ({ id, title, price, description, image, stock }) => {
                         </Container>
                     </Col>
                 </Row>
-                <Container className="p-5">
+                <Container className="p-5 my-5 ">
                     <h5>Description</h5>
                     <span>{description}</span>
                 </Container>
