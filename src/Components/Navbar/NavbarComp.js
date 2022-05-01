@@ -19,7 +19,7 @@ const NavbarComp = () => {
                         navbarScroll
                     >
                         <Nav.Link as={Link} to="/" className="mx-4">
-                            Inicio
+                            Home
                         </Nav.Link>
 
                         <NavbarCategoryListContainer />
